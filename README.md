@@ -61,6 +61,102 @@ The robot can display the following expressions:
 - Jumper Wires
 ---
 
+## 🔌 Wiring
+
+### 🧠 Microcontroller
+- ESP32
+
+---
+
+### 🤖 Servos
+
+Each servo has **3 wires**:
+- **Red → VCC (Power)**
+- **Brown/Black → GND**
+- **Yellow/Orange → Signal**
+
+#### Connections:
+
+| Servo        | Signal Pin | VCC        | GND |
+|--------------|-----------|------------|-----|
+| Left Servo   | GPIO 25   | External 5V | Common GND |
+| Right Servo  | GPIO 26   | External 5V | Common GND |
+
+---
+
+### ⚠️ Servo Power (CRITICAL)
+
+- DO NOT power servos from ESP32 5V pin ❌  
+- Use an **external battery (recommended)**  
+
+Example:
+- 2x 3.7V Li-ion batteries (in series) or regulated 5V  
+
+---
+
+### 🔗 Common Ground (VERY IMPORTANT)
+
+You MUST connect:
+- Battery GND  
+- ESP32 GND  
+- Servo GND  
+
+👉 All grounds should be connected together  
+
+If not:
+- Servos will jitter ❌  
+- Robot may behave randomly ❌  
+
+---
+
+### 🖥️ OLED Display (I2C)
+
+| OLED Pin | ESP32 Pin |
+|----------|----------|
+| VCC      | 3.3V / 5V |
+| GND      | GND      |
+| SDA      | GPIO 21  |
+| SCL      | GPIO 22  |
+
+- I2C Address: `0x3C`
+
+---
+
+### 📶 Bluetooth
+- Built-in ESP32 Bluetooth used  
+- No external module required  
+
+Device Name:
+ESP32_EYES
+
+---
+
+### 🔋 Power Summary
+
+- Servos → External Battery  
+- ESP32 → USB / Battery  
+- OLED → ESP32 power  
+- All grounds connected together  
+
+---
+
+## 🧩 Connection Summary
+- Left Servo Signal → GPIO 25  
+- Right Servo Signal → GPIO 26  
+- Servo VCC → External 5V  
+- Servo GND → Common GND  
+- OLED SDA → GPIO 21  
+- OLED SCL → GPIO 22  
+
+---
+
+## ⚠️ Important Notes
+- Servos draw high current → external power is required  
+- Without common GND, signals won’t work properly  
+- Incorrect wiring may cause OLED failure or unstable movement  
+
+---
+
 ## Challenges Faced
 - Maintaining balance using only 2 servos
 - Limited movement (no turning or backward movement yet)
